@@ -24,7 +24,8 @@ namespace Widwicky.Player.Input
                 return new Vector3(direction.x, 0, direction.y);
             }
         }
-
+        
+        public Vector2 Direction2D => _inputSystem.Player.Move.ReadValue<Vector2>();
         public Vector2 Aiming => _inputSystem.Player.Look.ReadValue<Vector2>();
         public bool Jump => _inputSystem.Player.Jump.triggered;
     }

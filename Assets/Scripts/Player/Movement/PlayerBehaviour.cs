@@ -43,5 +43,7 @@ namespace Widwicky.Player.Movement
         {
             _controller.height = isCrouching ? _controller.height / 2 : _currentHeight;
         }
+
+        public float Velocity => _controller.velocity.magnitude;
     }
 }

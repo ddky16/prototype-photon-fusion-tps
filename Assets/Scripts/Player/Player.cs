@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Widwicky.Player.Animation;
 using Widwicky.Player.Config;
 using Widwicky.Player.Input;
 using Widwicky.Player.Movement;
@@ -13,12 +14,18 @@ namespace Widwicky.Player
         private CharacterController _controller;
         private PlayerBehaviour _behaviour;
         private PlayerController _inputControl;
+        private PlayerAnimation _animation;
         
         private void Awake()
         {
             _controller = GetComponent<CharacterController>();
             _behaviour = new PlayerBehaviour(_controller);
             _inputControl = new PlayerController();
+        }
+
+        private void Start()
+        {
+            _animation = GetComponentInChildren<PlayerAnimation>();
         }
 
         private void OnEnable()
@@ -34,6 +41,7 @@ namespace Widwicky.Player
         private void Update()
         {
             _behaviour.Move(_inputControl.Direction, configuration.WalkSpeed);
+            _animation.Move(_inputControl.Direction2D, _behaviour.Velocity);
         }
     }
 }
